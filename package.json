@@ -1,0 +1,19 @@
+{
+  "name": "blogvonjoel",
+  "version": "1.0.0",
+  "description": "My Personal Blog",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./lib/index.js",
+    "test": "npm run start"
+  },
+  "author": "Joel Reuben",
+  "license": "ISC",
+  "dependencies": {
+    "@scullyio/init": "^1.1.1",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.35"
+  }
+}
