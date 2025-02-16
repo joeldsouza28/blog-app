@@ -1,7 +1,16 @@
-<% include layout.ejs %>
-<h1>Markdown Blog</h1>
-<ul>
-    <% posts.forEach(post => { %>
-        <li><a href="/post/<%= post %>"><%= post %></a></li>
-    <% }); %>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Home</title>
+</head>
+<body>
+    <h1>Welcome to My Blog</h1>
+    <ul>
+        <% posts.forEach(post => { %>
+            <li><a href="/post/<%= post %>"><%= post %></a></li>
+        <% }); %>
+    </ul>
+</body>
+</html>

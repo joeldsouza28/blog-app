@@ -33,6 +33,7 @@ app.get('/post/:title', (req, res) => {
             return res.status(404).send("Post not found.");
         }
         const htmlContent = marked.parse(content);
+        console.log(htmlContent)
         res.render('post', { title: postTitle, content: htmlContent });
     });
 });
