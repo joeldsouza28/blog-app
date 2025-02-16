@@ -4,7 +4,7 @@
   "description": "My Personal Blog",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon server.js",
     "test": "npm run start"
   },
   "author": "Joel Reuben",
