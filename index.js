@@ -1,8 +1,43 @@
-const express = require("express");
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const marked = require('marked');
+
 const app = express();
+const PORT = 3000;
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
 
-app.listen(3000, () => console.log("Server ready on port 3000."));
+// Serve static files
+app.use(express.static('public'));
 
-module.exports = app;
+// Home route - List all Markdown files
+app.get('/', (req, res) => {
+    fs.readdir('./posts', (err, files) => {
+        if (err) {
+            return res.status(500).send("Error reading posts directory.");
+        }
+        const posts = files.filter(file => file.endsWith('.md')).map(file => file.replace('.md', ''));
+        res.render('index', { posts });
+    });
+});
+
+// Blog post route - Convert Markdown to HTML
+app.get('/post/:title', (req, res) => {
+    const postTitle = req.params.title;
+    const postPath = path.join(__dirname, 'posts', `${postTitle}.md`);
+
+    fs.readFile(postPath, 'utf-8', (err, content) => {
+        if (err) {
+            return res.status(404).send("Post not found.");
+        }
+        const htmlContent = marked.parse(content);
+        res.render('post', { title: postTitle, content: htmlContent });
+    });
+});
+
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
+});
